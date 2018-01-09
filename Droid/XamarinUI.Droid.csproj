@@ -137,20 +137,23 @@
     <Reference Include="Xamarin.GooglePlayServices.Location">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Location.dll</HintPath>
     </Reference>
+    <Reference Include="Android-UI-Binding">
+      <HintPath>..\..\..\Desktop\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
+    </Reference>
     <Reference Include="AltBeacon.Droid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.1\lib\NearITSDK\AltBeacon.Droid.dll</HintPath>
+      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\AltBeacon.Droid.dll</HintPath>
     </Reference>
     <Reference Include="BindDroid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.1\lib\NearITSDK\BindDroid.dll</HintPath>
+      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\BindDroid.dll</HintPath>
     </Reference>
     <Reference Include="GoogleServices">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.1\lib\NearITSDK\GoogleServices.dll</HintPath>
+      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\GoogleServices.dll</HintPath>
     </Reference>
     <Reference Include="XamarinBridge.Droid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.1\lib\NearITSDK\XamarinBridge.Droid.dll</HintPath>
+      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\XamarinBridge.Droid.dll</HintPath>
     </Reference>
     <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.1\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
+      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +166,14 @@
     <Compile Include="NearUIDroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Switcher\Permissions.cs" />
+    <Compile Include="Switcher\Coupon.cs" />
+    <Compile Include="Switcher\Content.cs" />
+    <Compile Include="Switcher\Feedback.cs" />
+    <Compile Include="NearUIDroidInitializer.cs" />
+    <Compile Include="Adapter\AdapterCoupon.cs" />
+    <Compile Include="Adapter\AdapterContent.cs" />
+    <Compile Include="Adapter\AdapterFeedback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -178,6 +189,10 @@
     <AndroidResource Include="Resources\drawable-hdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xhdpi\icon.png" />
     <AndroidResource Include="Resources\drawable-xxhdpi\icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Switcher\" />
+    <Folder Include="Adapter\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.5.0.121934\build\netstandard1.0\Xamarin.Forms.targets')" />
