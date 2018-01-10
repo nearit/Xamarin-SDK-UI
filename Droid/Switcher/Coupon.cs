@@ -32,12 +32,6 @@ namespace XamarinUI.Droid.Switcher
                                        .EnableTapOutsideToClose()
                                        .Build();
             }
-            else if(mode.Equals(Global.Global.COUPON_LIST_MODE))
-            {
-                return NearITUIBindings.GetInstance(context)
-                                       .CreateCouponListIntentBuilder()
-                                       .Build();
-            }
             else
             {
                 Intent inte = new Intent();

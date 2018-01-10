@@ -7,9 +7,14 @@ namespace XamarinUI
 {
     public class NearUIPCL
     {
-        public static void UIPermission(string mode)       //mode = LOCATION + BLUETOOTH, ...
+        public static void UINoBluetoothPermission(Action<int> result)
         {
-            DependencyService.Get<IManager>().PermissionTypeFromPCL(mode);
+            DependencyService.Get<IManager>().PermissionTypeFromPCL(Global.LOCATION_MODE, result);
+        }
+
+        public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH, ...
+        {
+            DependencyService.Get<IManager>().PermissionTypeFromPCL(Global.Global.DEFAULT_PERMISSIONS_MODE, result);
         }
 
         public static void UICoupon(string mode, XCCouponNotification coupon)
@@ -25,6 +30,11 @@ namespace XamarinUI
         public static void UIFeedback(string mode, XCFeedbackNotification feedback)
         {
             DependencyService.Get<IManager>().FeedbackTypeFromPCL(mode, feedback);
+        }
+
+        public static void UICouponList()
+        {
+            DependencyService.Get<IManager>().CouponListTypeFromPCL();
         }
     }
 }

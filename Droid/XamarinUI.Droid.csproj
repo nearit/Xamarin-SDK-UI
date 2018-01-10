@@ -137,9 +137,6 @@
     <Reference Include="Xamarin.GooglePlayServices.Location">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Location.dll</HintPath>
     </Reference>
-    <Reference Include="Android-UI-Binding">
-      <HintPath>..\..\..\Desktop\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
-    </Reference>
     <Reference Include="AltBeacon.Droid">
       <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\AltBeacon.Droid.dll</HintPath>
     </Reference>
@@ -149,11 +146,14 @@
     <Reference Include="GoogleServices">
       <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\GoogleServices.dll</HintPath>
     </Reference>
+    <Reference Include="Android-UI-Binding">
+      <HintPath>..\..\..\Desktop\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
+    </Reference>
     <Reference Include="XamarinBridge.Droid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\XamarinBridge.Droid.dll</HintPath>
+      <HintPath>..\..\Xamarin-SDK-Official\bridge\Droid\XamarinBridge.Droid\bin\Debug\XamarinBridge.Droid.dll</HintPath>
     </Reference>
     <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.3\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
+      <HintPath>..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

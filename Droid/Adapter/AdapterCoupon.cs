@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using IT.Near.Sdk.Reactions.Couponplugin.Model;
 using XamarinBridge.PCL.Types;
@@ -15,7 +16,7 @@ namespace XamarinUI.Droid.Adapter
             NCoupon.Description = XCoupon.Description;
             NCoupon.Value = XCoupon.Value;
             NCoupon.ExpiresAt = XCoupon.ExpiresAt;
-            NCoupon.RedeemableFrom = XCoupon.ReedemableFrom;
+            NCoupon.RedeemableFrom = XCoupon.RedeemableFrom;
 
             if(XCoupon.IconSet != null)
             {
@@ -25,9 +26,14 @@ namespace XamarinUI.Droid.Adapter
             }
 
             NCoupon.Id = XCoupon.Id;
-            /*NCoupon.Serial = XCoupon.Serial;
-            NCoupon.ClaimedAt = XCoupon.ClaimedAt;
-            NCoupon.RedeemedAt = XCoupon.RedeemedAt;*/
+
+            IList<Claim> Claims = new List<Claim>();
+            Claim Claim = new Claim();
+            Claim.SerialNumber = XCoupon.Serial;
+            Claim.ClaimedAt = XCoupon.ClaimedAt;
+            Claim.RedeemedAt = XCoupon.RedeemedAt;
+            Claims.Add(Claim);
+            NCoupon.Claims = (System.Collections.IList)Claims;
 
             return NCoupon;
         }

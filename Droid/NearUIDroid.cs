@@ -18,21 +18,26 @@ using XamarinBridge.PCL.Types;
 [assembly: Dependency(typeof(XamarinUI.Droid.NearUIDroid))]
 namespace XamarinUI.Droid
 {
-    [Activity(Label = "NearUIDroid")]
+    [Activity(Theme = "@android:style/Theme.Translucent")]
     public class NearUIDroid : Activity, IManager
     {
+        private static Action<int> resultHandler;
+
         private static int NEAR_PERMISSION_REQUEST = 1000;
+        private static int NEAR_CONTENT_REQUEST = 2000;
+
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            Window.RequestFeature(WindowFeatures.NoTitle);
         }
 
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
             System.Diagnostics.Debug.WriteLine("OnPostCreate");
-            OnNewIntent(Intent);
+            OnNewIntent((Intent)Intent);
         }
 
         protected override void OnNewIntent(Intent intent)
@@ -53,17 +58,23 @@ namespace XamarinUI.Droid
             else if(type.Equals("coupon"))
             {
                 Coupon coupon = (IT.Near.Sdk.Reactions.Couponplugin.Model.Coupon)intent.GetParcelableExtra("coupon");
-                StartActivityForResult(Switcher.CouponClass.SwitchMode(mode, this, coupon), NEAR_PERMISSION_REQUEST);
+                StartActivityForResult(Switcher.CouponClass.SwitchMode(mode, this, coupon), NEAR_CONTENT_REQUEST);
+            }
+            else if(type.Equals("couponList"))
+            {
+                StartActivityForResult(NearITUIBindings.GetInstance(this)
+                                       .CreateCouponListIntentBuilder()
+                                       .Build(), NEAR_CONTENT_REQUEST);
             }
             else if (type.Equals("feedback"))
             {
                 Feedback feedback = (IT.Near.Sdk.Reactions.Feedbackplugin.Model.Feedback)intent.GetParcelableExtra("feedback");
-                StartActivityForResult(Switcher.FeedbackClass.SwitchMode(mode, this, feedback), NEAR_PERMISSION_REQUEST);
+                StartActivityForResult(Switcher.FeedbackClass.SwitchMode(mode, this, feedback), NEAR_CONTENT_REQUEST);
             }
             else if (type.Equals("content"))
             {
                 Content content = (IT.Near.Sdk.Reactions.Contentplugin.Model.Content)intent.GetParcelableExtra("content");
-                StartActivityForResult(Switcher.ContentClass.SwitchMode(mode, this, content), NEAR_PERMISSION_REQUEST);
+                StartActivityForResult(Switcher.ContentClass.SwitchMode(mode, this, content), NEAR_CONTENT_REQUEST);
             }
 
         }
@@ -71,8 +82,9 @@ namespace XamarinUI.Droid
 
 
 
-        public void PermissionTypeFromPCL(string mode)
+        public void PermissionTypeFromPCL(string mode, Action<int> result)
         {
+            resultHandler = result;
             UIPermissions(mode);
         }
 
@@ -97,6 +109,11 @@ namespace XamarinUI.Droid
             UIFeedback(mode, NFeedback);
         }
 
+        public void CouponListTypeFromPCL()
+        {
+            UICouponList();
+        }
+
 
 
         public static void UIPermissions(string mode)
@@ -115,7 +132,15 @@ namespace XamarinUI.Droid
             intent.PutExtra("coupon", coupon);
             intent.SetAction("coupon");
 
-            (Forms.Context).StartActivity(typeof(NearUIDroid));
+            (Forms.Context).StartActivity(intent);
+        }
+
+        public static void UICouponList()
+        {
+            Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
+            intent.SetAction("couponList");
+
+            (Forms.Context).StartActivity(intent);
         }
 
         public static void UIContent(string mode, Content content)
@@ -125,18 +150,45 @@ namespace XamarinUI.Droid
             intent.PutExtra("content", content);
             intent.SetAction("content");
 
-            (Forms.Context).StartActivity(typeof(NearUIDroid));
+            (Forms.Context).StartActivity(intent);
         }
 
         public static void UIFeedback(string mode, Feedback feedback)
         {
+            System.Diagnostics.Debug.WriteLine("UIFeedback");
+
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("mode", mode);
             intent.PutExtra("feedback", feedback);
             intent.SetAction("feedback");
 
-            (Forms.Context).StartActivity(typeof(NearUIDroid));
+            (Forms.Context).StartActivity(intent);
 
+        }
+
+
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            if(requestCode == NEAR_PERMISSION_REQUEST) {
+                if (resultHandler != null)
+                {
+                    if(resultCode == Result.Ok) 
+                    {
+                        resultHandler.Invoke(0);
+                    } else{
+                        resultHandler.Invoke(1);
+                    }
+                    resultHandler = null;
+                }
+            } 
+            Finish();
+        }
+
+        public interface IPermissionResultHandler
+        {
+            void OnSuccess();
+            void OnFailure();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using IT.Near.Sdk.Reactions.Contentplugin.Model;
 using XamarinBridge.PCL.Types;
 
@@ -16,9 +17,12 @@ namespace XamarinUI.Droid.Adapter
 
             if(XContent.ImageLink != null)
             {
-                //NContent.ImageLink = new ImageSet();
-                NContent.ImageLink.FullSize = XContent.ImageLink.FullSize;
-                NContent.ImageLink.SmallSize = XContent.ImageLink.SmallSize;
+                IList<ImageSet> Images = new List<ImageSet>();
+                ImageSet image = new ImageSet();
+                image.FullSize = XContent.ImageLink.FullSize;
+                image.SmallSize = XContent.ImageLink.SmallSize;
+                Images.Add(image);
+                NContent.Images_links = Images;
             }
 
             if(XContent.Cta != null)

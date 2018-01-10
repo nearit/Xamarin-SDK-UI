@@ -2,6 +2,9 @@
 using Com.Nearit.Ui_bindings;
 using Android.Content;
 using IT.Near.Sdk.Reactions.Feedbackplugin.Model;
+using IT.Near.Sdk;
+using IT.Near.Sdk.Reactions.Feedbackplugin;
+using IT.Near.Sdk.Recipes;
 
 namespace XamarinUI.Droid.Switcher
 {
@@ -19,6 +22,7 @@ namespace XamarinUI.Droid.Switcher
             }
             else
             {
+                System.Diagnostics.Debug.WriteLine("invalid feedback");
                 Intent inte = new Intent();
                 inte.SetType("invalid");
 
