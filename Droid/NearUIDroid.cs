@@ -36,7 +36,6 @@ namespace XamarinUI.Droid
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            System.Diagnostics.Debug.WriteLine("OnPostCreate");
             OnNewIntent((Intent)Intent);
         }
 
@@ -63,18 +62,22 @@ namespace XamarinUI.Droid
             else if(type.Equals("couponList"))
             {
                 StartActivityForResult(NearITUIBindings.GetInstance(this)
-                                       .CreateCouponListIntentBuilder()
-                                       .Build(), NEAR_CONTENT_REQUEST);
+                                                       .CreateCouponListIntentBuilder()
+                                                       .Build(), NEAR_CONTENT_REQUEST);
             }
             else if (type.Equals("feedback"))
             {
                 Feedback feedback = (IT.Near.Sdk.Reactions.Feedbackplugin.Model.Feedback)intent.GetParcelableExtra("feedback");
-                StartActivityForResult(Switcher.FeedbackClass.SwitchMode(mode, this, feedback), NEAR_CONTENT_REQUEST);
+                StartActivityForResult(NearITUIBindings.GetInstance(this)
+                                                       .CreateFeedbackIntentBuilder(feedback)
+                                                       .Build(), NEAR_CONTENT_REQUEST);
             }
             else if (type.Equals("content"))
             {
                 Content content = (IT.Near.Sdk.Reactions.Contentplugin.Model.Content)intent.GetParcelableExtra("content");
-                StartActivityForResult(Switcher.ContentClass.SwitchMode(mode, this, content), NEAR_CONTENT_REQUEST);
+                StartActivityForResult(NearITUIBindings.GetInstance(this)
+                                                       .CreateContentDetailIntentBuilder(content)
+                                                       .Build(), NEAR_CONTENT_REQUEST);
             }
 
         }
@@ -82,41 +85,108 @@ namespace XamarinUI.Droid
 
 
 
+        // Methods from PCL
+
         public void PermissionTypeFromPCL(string mode, Action<int> result)
         {
             resultHandler = result;
-            UIPermissions(mode);
+            OurUIPermissions(mode);
         }
 
         public void CouponTypeFromPCL(string mode, XCCouponNotification coupon)
         {
             Coupon NCoupon = new Coupon();
             NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            UICoupon(mode, NCoupon);
+            OurUICoupon(mode, NCoupon);
         }
 
         public void ContentTypeFromPCL(string mode, XCContentNotification content)
         {
             Content NContent = new Content();
             NContent = Adapter.AdapterContent.GetNativeType(content);
-            UIContent(mode, NContent);
+            OurUIContent(mode, NContent);
         }
 
         public void FeedbackTypeFromPCL(string mode, XCFeedbackNotification feedback)
         {
             Feedback NFeedback = new Feedback();
             NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
-            UIFeedback(mode, NFeedback);
+            OurUIFeedback(mode, NFeedback);
         }
 
         public void CouponListTypeFromPCL()
         {
-            UICouponList();
+            OurUICouponList();
         }
 
 
 
-        public static void UIPermissions(string mode)
+        // Methods from the native fragment
+
+        public static void UINoBluetoothPermission(Action<int> result)      //only location
+        {
+            resultHandler = result;
+            OurUIPermissions(Global.LOCATION_MODE);
+        }
+
+        public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH
+        {
+            resultHandler = result;
+            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE);
+        }
+
+        public static void UIValidCoupon(XCCouponNotification coupon)
+        {
+            Coupon NCoupon = new Coupon();
+            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(Global.VALID_MODE, NCoupon);
+        }
+
+        public static void UIInactiveCoupon(XCCouponNotification coupon)
+        {
+            Coupon NCoupon = new Coupon();
+            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(Global.INACTIVE_MODE, NCoupon);
+        }
+
+        public static void UIExpiredCoupon(XCCouponNotification coupon)
+        {
+            Coupon NCoupon = new Coupon();
+            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(Global.EXPIRED_MODE, NCoupon);
+        }
+
+        public static void UIContent(XCContentNotification content)
+        {
+            Content NContent = new Content();
+            NContent = Adapter.AdapterContent.GetNativeType(content);
+            OurUIContent(Global.DEFAULT_CONTENT_MODE, NContent);
+        }
+
+        public static void UIFeedback(XCFeedbackNotification feedback)
+        {
+            Feedback NFeedback = new Feedback();
+            NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
+            OurUIFeedback(Global.DEFAULT_FEEDBACK_MODE, NFeedback);
+        }
+
+        public static void UICouponList()
+        {
+            OurUICouponList();
+        }
+
+        public interface IPermissionResultHandler
+        {
+            void OnSuccess();
+            void OnFailure();
+        }
+
+
+
+
+        // Our private methods
+
+        private static void OurUIPermissions(string mode)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("mode", mode);
@@ -125,7 +195,7 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        public static void UICoupon(string mode, Coupon coupon)
+        private static void OurUICoupon(string mode, Coupon coupon)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("mode", mode);
@@ -135,7 +205,7 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        public static void UICouponList()
+        private static void OurUICouponList()
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.SetAction("couponList");
@@ -143,7 +213,7 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        public static void UIContent(string mode, Content content)
+        private static void OurUIContent(string mode, Content content)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("mode", mode);
@@ -153,7 +223,7 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        public static void UIFeedback(string mode, Feedback feedback)
+        private static void OurUIFeedback(string mode, Feedback feedback)
         {
             System.Diagnostics.Debug.WriteLine("UIFeedback");
 
@@ -163,32 +233,31 @@ namespace XamarinUI.Droid
             intent.SetAction("feedback");
 
             (Forms.Context).StartActivity(intent);
-
         }
+
+
+
 
 
         protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
         {
             base.OnActivityResult(requestCode, resultCode, data);
-            if(requestCode == NEAR_PERMISSION_REQUEST) {
+            if (requestCode == NEAR_PERMISSION_REQUEST)
+            {
                 if (resultHandler != null)
                 {
-                    if(resultCode == Result.Ok) 
+                    if (resultCode == Result.Ok)
                     {
                         resultHandler.Invoke(0);
-                    } else{
+                    }
+                    else
+                    {
                         resultHandler.Invoke(1);
                     }
                     resultHandler = null;
                 }
-            } 
+            }
             Finish();
-        }
-
-        public interface IPermissionResultHandler
-        {
-            void OnSuccess();
-            void OnFailure();
         }
     }
 }

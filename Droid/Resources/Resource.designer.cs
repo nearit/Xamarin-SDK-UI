@@ -5423,104 +5423,107 @@ namespace XamarinUI.Droid
 			// aapt resource value: 0x7f090026
 			public const int mr_user_route_category_name = 2131296294;
 			
-			// aapt resource value: 0x7f090056
-			public const int nearit_ui_app_name = 2131296342;
+			// aapt resource value: 0x7f090055
+			public const int near_framework_type = 2131296341;
 			
 			// aapt resource value: 0x7f090057
-			public const int nearit_ui_bluetooth = 2131296343;
+			public const int nearit_ui_app_name = 2131296343;
 			
 			// aapt resource value: 0x7f090058
-			public const int nearit_ui_cancel_dialog = 2131296344;
+			public const int nearit_ui_bluetooth = 2131296344;
 			
 			// aapt resource value: 0x7f090059
-			public const int nearit_ui_close_permissions_text = 2131296345;
+			public const int nearit_ui_cancel_dialog = 2131296345;
 			
 			// aapt resource value: 0x7f09005a
-			public const int nearit_ui_coupon_date_pretty_format = 2131296346;
+			public const int nearit_ui_close_permissions_text = 2131296346;
 			
 			// aapt resource value: 0x7f09005b
-			public const int nearit_ui_coupon_expired_text = 2131296347;
+			public const int nearit_ui_coupon_date_pretty_format = 2131296347;
 			
 			// aapt resource value: 0x7f09005c
-			public const int nearit_ui_coupon_inactive_text = 2131296348;
+			public const int nearit_ui_coupon_expired_text = 2131296348;
 			
 			// aapt resource value: 0x7f09005d
-			public const int nearit_ui_coupon_list_empty_list_text = 2131296349;
+			public const int nearit_ui_coupon_inactive_text = 2131296349;
 			
 			// aapt resource value: 0x7f09005e
-			public const int nearit_ui_coupon_redeemed_text = 2131296350;
+			public const int nearit_ui_coupon_list_empty_list_text = 2131296350;
 			
 			// aapt resource value: 0x7f09005f
-			public const int nearit_ui_coupon_valid_text = 2131296351;
+			public const int nearit_ui_coupon_redeemed_text = 2131296351;
 			
 			// aapt resource value: 0x7f090060
-			public const int nearit_ui_coupon_validity_label_redeemed = 2131296352;
+			public const int nearit_ui_coupon_valid_text = 2131296352;
 			
 			// aapt resource value: 0x7f090061
-			public const int nearit_ui_coupon_validity_label_valid = 2131296353;
+			public const int nearit_ui_coupon_validity_label_redeemed = 2131296353;
 			
 			// aapt resource value: 0x7f090062
-			public const int nearit_ui_coupon_validity_label_valid_no_period = 2131296354;
+			public const int nearit_ui_coupon_validity_label_valid = 2131296354;
 			
 			// aapt resource value: 0x7f090063
-			public const int nearit_ui_coupon_validity_period_from = 2131296355;
+			public const int nearit_ui_coupon_validity_label_valid_no_period = 2131296355;
 			
 			// aapt resource value: 0x7f090064
-			public const int nearit_ui_coupon_validity_period_from_to = 2131296356;
+			public const int nearit_ui_coupon_validity_period_from = 2131296356;
 			
 			// aapt resource value: 0x7f090065
-			public const int nearit_ui_coupon_validity_period_until = 2131296357;
+			public const int nearit_ui_coupon_validity_period_from_to = 2131296357;
 			
 			// aapt resource value: 0x7f090066
-			public const int nearit_ui_feedback_close_button = 2131296358;
+			public const int nearit_ui_coupon_validity_period_until = 2131296358;
 			
 			// aapt resource value: 0x7f090067
-			public const int nearit_ui_feedback_error_message = 2131296359;
+			public const int nearit_ui_feedback_close_button = 2131296359;
 			
 			// aapt resource value: 0x7f090068
-			public const int nearit_ui_feedback_leave_a_comment = 2131296360;
+			public const int nearit_ui_feedback_error_message = 2131296360;
 			
 			// aapt resource value: 0x7f090069
-			public const int nearit_ui_feedback_send_button_default_text = 2131296361;
+			public const int nearit_ui_feedback_leave_a_comment = 2131296361;
 			
 			// aapt resource value: 0x7f09006a
-			public const int nearit_ui_feedback_send_success_message = 2131296362;
+			public const int nearit_ui_feedback_send_button_default_text = 2131296362;
 			
 			// aapt resource value: 0x7f09006b
-			public const int nearit_ui_go_to_settings = 2131296363;
+			public const int nearit_ui_feedback_send_success_message = 2131296363;
 			
 			// aapt resource value: 0x7f09006c
-			public const int nearit_ui_location = 2131296364;
+			public const int nearit_ui_go_to_settings = 2131296364;
 			
 			// aapt resource value: 0x7f09006d
-			public const int nearit_ui_permission_bar_alert_text = 2131296365;
+			public const int nearit_ui_location = 2131296365;
 			
 			// aapt resource value: 0x7f09006e
-			public const int nearit_ui_permission_bar_button_text = 2131296366;
+			public const int nearit_ui_permission_bar_alert_text = 2131296366;
 			
 			// aapt resource value: 0x7f09006f
-			public const int nearit_ui_permission_message = 2131296367;
+			public const int nearit_ui_permission_bar_button_text = 2131296367;
 			
 			// aapt resource value: 0x7f090070
-			public const int nearit_ui_permission_title = 2131296368;
+			public const int nearit_ui_permission_message = 2131296368;
 			
 			// aapt resource value: 0x7f090071
-			public const int nearit_ui_permissions_explanation_text = 2131296369;
+			public const int nearit_ui_permission_title = 2131296369;
 			
 			// aapt resource value: 0x7f090072
-			public const int nearit_ui_turn_on_location_message = 2131296370;
+			public const int nearit_ui_permissions_explanation_text = 2131296370;
 			
 			// aapt resource value: 0x7f090073
-			public const int nearit_ui_turn_on_location_title = 2131296371;
+			public const int nearit_ui_turn_on_location_message = 2131296371;
 			
 			// aapt resource value: 0x7f090074
-			public const int nearit_ui_warning_dialog_button_text = 2131296372;
+			public const int nearit_ui_turn_on_location_title = 2131296372;
 			
 			// aapt resource value: 0x7f090075
-			public const int nearit_ui_warning_dialog_close_text = 2131296373;
+			public const int nearit_ui_warning_dialog_button_text = 2131296373;
 			
 			// aapt resource value: 0x7f090076
-			public const int nearit_ui_warning_dialog_message = 2131296374;
+			public const int nearit_ui_warning_dialog_close_text = 2131296374;
+			
+			// aapt resource value: 0x7f090077
+			public const int nearit_ui_warning_dialog_message = 2131296375;
 			
 			// aapt resource value: 0x7f09004b
 			public const int password_toggle_content_description = 2131296331;
@@ -5543,8 +5546,8 @@ namespace XamarinUI.Droid
 			// aapt resource value: 0x7f09003b
 			public const int status_bar_notification_info_overflow = 2131296315;
 			
-			// aapt resource value: 0x7f090055
-			public const int unknown_geofence_transition = 2131296341;
+			// aapt resource value: 0x7f090056
+			public const int unknown_geofence_transition = 2131296342;
 			
 			static String()
 			{

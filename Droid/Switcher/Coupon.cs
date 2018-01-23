@@ -12,32 +12,25 @@ namespace XamarinUI.Droid.Switcher
         {
             mode = mode.ToLower();
 
-            if(mode.Equals(Global.Global.VALID_MODE))
-            {
-                return NearITUIBindings.GetInstance(context)
-                                       .CreateCouponDetailIntentBuilder(coupon)
-                                       .Build();
-                            
-            }
-            else if(mode.Equals(Global.Global.INACTIVE_MODE))
+            if(mode.Equals(Global.INACTIVE_MODE))
             {
                 return NearITUIBindings.GetInstance(context)
                                        .CreateCouponDetailIntentBuilder(coupon)
                                        .Build();
             }
-            else if(mode.Equals(Global.Global.EXPIRED_MODE))
+            else if(mode.Equals(Global.EXPIRED_MODE))
             {
                 return NearITUIBindings.GetInstance(context)
                                        .CreateCouponDetailIntentBuilder(coupon)
                                        .EnableTapOutsideToClose()
                                        .Build();
             }
-            else
+            else      //valid coupon
             {
-                Intent inte = new Intent();
-                inte.SetType("invalid");
+                return NearITUIBindings.GetInstance(context)
+                                       .CreateCouponDetailIntentBuilder(coupon)
+                                       .Build();
 
-                return inte;
             }
         }
     }

@@ -7,29 +7,39 @@ namespace XamarinUI
 {
     public class NearUIPCL
     {
-        public static void UINoBluetoothPermission(Action<int> result)
+        public static void UINoBluetoothPermission(Action<int> result)      //only location
         {
             DependencyService.Get<IManager>().PermissionTypeFromPCL(Global.LOCATION_MODE, result);
         }
 
-        public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH, ...
+        public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH
         {
-            DependencyService.Get<IManager>().PermissionTypeFromPCL(Global.Global.DEFAULT_PERMISSIONS_MODE, result);
+            DependencyService.Get<IManager>().PermissionTypeFromPCL(Global.DEFAULT_PERMISSIONS_MODE, result);
         }
 
-        public static void UICoupon(string mode, XCCouponNotification coupon)
+        public static void UIValidCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().CouponTypeFromPCL(mode, coupon);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.VALID_MODE, coupon);
         }
 
-        public static void UIContent(string mode, XCContentNotification content)
+        public static void UIInactiveCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().ContentTypeFromPCL(mode, content);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.INACTIVE_MODE, coupon);
         }
 
-        public static void UIFeedback(string mode, XCFeedbackNotification feedback)
+        public static void UIExpiredCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().FeedbackTypeFromPCL(mode, feedback);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.EXPIRED_MODE, coupon);
+        }
+
+        public static void UIContent(XCContentNotification content)
+        {
+            DependencyService.Get<IManager>().ContentTypeFromPCL(Global.DEFAULT_CONTENT_MODE, content);
+        }
+
+        public static void UIFeedback(XCFeedbackNotification feedback)
+        {
+            DependencyService.Get<IManager>().FeedbackTypeFromPCL(Global.DEFAULT_FEEDBACK_MODE, feedback);
         }
 
         public static void UICouponList()
