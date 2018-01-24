@@ -84,6 +84,7 @@ namespace SampleUIBindings
             else if(textCell.Text == "Default Feedback")
             {
                 XCFeedbackNotification XFeedback = new XCFeedbackNotification();
+                XFeedback.NotificationMessage = "Notification Message";
                 XFeedback.Question = "Default Feedback Question";
                 XFeedback.RecipeId = "cia0";
 
@@ -92,7 +93,10 @@ namespace SampleUIBindings
             else if (textCell.Text == "Valid Coupon")
             {
                 XCCouponNotification XCoupon = new XCCouponNotification();
+
+                XCoupon.NotificationMessage = "Notification message";
                 XCoupon.Description = "Description example for valid coupon";
+                XCoupon.RedeemableFrom = "2017-04-01T00:00:00.000Z";
                 XCoupon.Value = "100€";
                 XCoupon.ExpiresAt = "3017-04-01T00:00:00.000Z";
                 XCoupon.Serial = "0123456789";
@@ -135,6 +139,7 @@ namespace SampleUIBindings
                 XImage.SmallSize = "https://www.nearit.com/wp-content/uploads/2017/05/brand@2x.png";
 
                 XCContentNotification XContent = new XCContentNotification();
+                XContent.NotificationMessage = "Notification Message";
                 XContent.Content = lorem;
                 XContent.Title = "Content title";
                 XContent.Cta = XContentLink;
@@ -145,6 +150,7 @@ namespace SampleUIBindings
             else if (textCell.Text == "Short Content")
             {
                 XCContentNotification XContent = new XCContentNotification();
+                XContent.NotificationMessage = "Notification Message";
                 XContent.Title = "Drinks";
                 XContent.Content = "<ul><li> Coffee </li><li> Tea </li><li> Milk </li></ul>";
 

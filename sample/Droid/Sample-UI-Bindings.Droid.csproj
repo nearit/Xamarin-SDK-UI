@@ -123,12 +123,6 @@
     <Reference Include="Xamarin.GooglePlayServices.Location">
       <HintPath>..\packages\Xamarin.GooglePlayServices.Location.60.1142.0\lib\MonoAndroid80\Xamarin.GooglePlayServices.Location.dll</HintPath>
     </Reference>
-    <Reference Include="XamarinUI.Droid">
-      <HintPath>..\..\..\Documents\Xamarin-UI-Binding\Droid\bin\Debug\XamarinUI.Droid.dll</HintPath>
-    </Reference>
-    <Reference Include="Android-UI-Binding">
-      <HintPath>..\..\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
-    </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
     </Reference>
@@ -158,6 +152,12 @@
     </Reference>
     <Reference Include="XamarinBridge.PCL">
       <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="Android-UI-Binding">
+      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="XamarinUI.Droid">
+      <HintPath>..\..\bridge\Droid\bin\Debug\XamarinUI.Droid.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -16,7 +16,6 @@ namespace XamarinUI.Droid.Switcher
             {
                 return NearITUIBindings.GetInstance(context)
                                 .CreatePermissionRequestIntentBuilder()
-                                .EnableTapOutsideToClose()
                                 .Build();
             }
             else        //only location
@@ -24,7 +23,6 @@ namespace XamarinUI.Droid.Switcher
                 return NearITUIBindings.GetInstance(context)
                                 .CreatePermissionRequestIntentBuilder()
                                 .NoBeacon()
-                                .EnableTapOutsideToClose()
                                 .Build();
             }
         }

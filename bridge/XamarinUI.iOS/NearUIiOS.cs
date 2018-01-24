@@ -1,16 +1,18 @@
 ﻿using System;
+using NearIT;
 using NearUI;
 using UIKit;
 using Xamarin.Forms;
 using XamarinBridge.PCL.Types;
 using XamarinUI.Interfaces;
+using XamarinUI.iOS.Adapter;
 
 [assembly: Dependency(typeof(XamarinUI.iOS.NearUIiOS))]
 namespace XamarinUI.iOS
 {
     public partial class NearUIiOS : UIViewController, IManager
     {
-        private string TypeToCall;
+        private static Action<int> resultHandler;
 
         public override void ViewDidLoad()
         {
@@ -18,7 +20,6 @@ namespace XamarinUI.iOS
 
             base.ViewDidLoad();
             // Perform any additional setup after loading the view, typically from a nib.
-            Switcher();
         }
 
         public override void DidReceiveMemoryWarning()
@@ -27,63 +28,132 @@ namespace XamarinUI.iOS
             // Release any cached data, images, etc that aren't in use.
         }
 
+
+
+
         public void PermissionTypeFromPCL(string mode, Action<int> result)
         {
-            
+            resultHandler = result;
+            Switcher.PermissionsClass.SwitchMode(mode);
+            OurUIPermissions(mode);
         }
 
-        public void CouponTypeFromPCL(string mode, XCCouponNotification coupon)
+        public void CouponTypeFromPCL(XCCouponNotification coupon)
         {
-            System.Diagnostics.Debug.WriteLine("CouponTypeFromPCL ios");
-            TypeToCall = Global.VALID_MODE;
-            ViewDidLoad();
+            OurUICoupon(AdapterCoupon.GetNativeType(coupon));
         }
 
-        public void ContentTypeFromPCL(string mode, XCContentNotification content)
+        public void ContentTypeFromPCL(XCContentNotification content)
         {
-            
+            OurUIContent(AdapterContent.GetNativeType(content));
         }
 
-        public void FeedbackTypeFromPCL(string mode, XCFeedbackNotification feedback)
+        public void FeedbackTypeFromPCL(XCFeedbackNotification feedback)
         {
-            
+            OurUIFeedback(AdapterFeedback.GetNativeType(feedback));
         }
 
         public void CouponListTypeFromPCL()
         {
+            OurUICouponList();
+        }
+
+
+
+        // Methods from the native fragment
+
+        public static void UINoBluetoothPermission(Action<int> result)      //only location
+        {
+            resultHandler = result;
+            OurUIPermissions(Global.LOCATION_MODE);
+        }
+
+        public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH
+        {
+            resultHandler = result;
+            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE);
+        }
+
+        public static void UIValidCoupon(XCCouponNotification coupon)
+        {
+            NITCoupon NCoupon = new NITCoupon();
+            NCoupon = AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(NCoupon);
+        }
+
+        public static void UIInactiveCoupon(XCCouponNotification coupon)
+        {
+            NITCoupon NCoupon = new NITCoupon();
+            NCoupon = AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(NCoupon);
+        }
+
+        public static void UIExpiredCoupon(XCCouponNotification coupon)
+        {
+            NITCoupon NCoupon = new NITCoupon();
+            NCoupon = AdapterCoupon.GetNativeType(coupon);
+            OurUICoupon(NCoupon);
+        }
+
+        public static void UIContent(XCContentNotification content)
+        {
+            NITContent NContent = new NITContent();
+            NContent = AdapterContent.GetNativeType(content);
+            OurUIContent(NContent);
+        }
+
+        public static void UIFeedback(XCFeedbackNotification feedback)
+        {
+            NITFeedback NFeedback = new NITFeedback();
+            NFeedback = AdapterFeedback.GetNativeType(feedback);
+            OurUIFeedback(NFeedback);
+        }
+
+        public static void UICouponList()
+        {
+            OurUICouponList();
+        }
+
+        public interface IPermissionResultHandler
+        {
+            void OnSuccess();
+            void OnFailure();
+        }
+
+
+
+
+        // Our private methods
+
+        private static void OurUIPermissions(string mode)
+        {
             
         }
 
-
-
-        // SWITCHER
-        private void Switcher()
+        private static void OurUICoupon(NITCoupon coupon)
         {
-            switch(TypeToCall)
-            {
-                case "default_permissions_mode":
-                    System.Diagnostics.Debug.WriteLine("default_permissions_mode");
-                    NITPermissionsViewController Permissions = new NITPermissionsViewController();
-                    Permissions.Show();
-                    break;
-                case "valid_mode":
-                    NITCouponViewController CouponView = new NITCouponViewController();
-                    System.Diagnostics.Debug.WriteLine("valid_mode");
-                    CouponView.Show();
-
-                    break;
-                /*case "valid_mode":
-
-                    break;
-                case "valid_mode":
-
-                    break;
-                case "valid_mode":
-
-                    break;*/
-
-            }
+            NITCouponViewController Coupon = new NITCouponViewController(coupon);
+            Coupon.Show();
         }
+
+        private static void OurUICouponList()
+        {
+            NITCouponListViewController CouponList = new NITCouponListViewController();
+            CouponList.Show();
+        }
+
+        private static void OurUIContent(NITContent content)
+        {
+            NITContentViewController Content = new NITContentViewController(content);
+            Content.Show();
+        }
+
+        private static void OurUIFeedback(NITFeedback feedback)
+        {
+            NITFeedbackViewController Feedback = new NITFeedbackViewController(feedback);
+            Feedback.Show();
+        }
+
     }
 }
 

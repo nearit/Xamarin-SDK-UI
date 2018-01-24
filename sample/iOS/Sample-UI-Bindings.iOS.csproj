@@ -103,12 +103,6 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="iOS-UI-Binding">
-      <HintPath>..\..\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="XamarinUI.iOS">
-      <HintPath>..\..\..\Documents\Xamarin-UI-Binding\XamarinUI.iOS\bin\Debug\XamarinUI.iOS.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Swift4">
       <HintPath>..\packages\Xamarin.Swift4.4.0.0.0\lib\xamarinios10\Xamarin.Swift4.dll</HintPath>
     </Reference>
@@ -150,6 +144,12 @@
     </Reference>
     <Reference Include="Xamarin.Swift4.CoreLocation">
       <HintPath>..\packages\Xamarin.Swift4.CoreLocation.4.0.3\lib\xamarinios10\Xamarin.Swift4.CoreLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="iOS-UI-Binding">
+      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="XamarinUI.iOS">
+      <HintPath>..\..\bridge\XamarinUI.iOS\bin\Debug\XamarinUI.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

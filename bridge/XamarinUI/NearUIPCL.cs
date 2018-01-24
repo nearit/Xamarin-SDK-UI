@@ -19,27 +19,27 @@ namespace XamarinUI
 
         public static void UIValidCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.VALID_MODE, coupon);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(coupon);
         }
 
         public static void UIInactiveCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.INACTIVE_MODE, coupon);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(coupon);
         }
 
         public static void UIExpiredCoupon(XCCouponNotification coupon)
         {
-            DependencyService.Get<IManager>().CouponTypeFromPCL(Global.EXPIRED_MODE, coupon);
+            DependencyService.Get<IManager>().CouponTypeFromPCL(coupon);
         }
 
         public static void UIContent(XCContentNotification content)
         {
-            DependencyService.Get<IManager>().ContentTypeFromPCL(Global.DEFAULT_CONTENT_MODE, content);
+            DependencyService.Get<IManager>().ContentTypeFromPCL(content);
         }
 
         public static void UIFeedback(XCFeedbackNotification feedback)
         {
-            DependencyService.Get<IManager>().FeedbackTypeFromPCL(Global.DEFAULT_FEEDBACK_MODE, feedback);
+            DependencyService.Get<IManager>().FeedbackTypeFromPCL(feedback);
         }
 
         public static void UICouponList()

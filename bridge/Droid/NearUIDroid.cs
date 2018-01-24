@@ -56,8 +56,10 @@ namespace XamarinUI.Droid
             }
             else if(type.Equals("coupon"))
             {
-                Coupon coupon = (IT.Near.Sdk.Reactions.Couponplugin.Model.Coupon)intent.GetParcelableExtra("coupon");
-                StartActivityForResult(Switcher.CouponClass.SwitchMode(mode, this, coupon), NEAR_CONTENT_REQUEST);
+                Coupon coupon = (Coupon)intent.GetParcelableExtra("coupon");
+                StartActivityForResult(NearITUIBindings.GetInstance(this)
+                                       .CreateCouponDetailIntentBuilder(coupon)
+                                       .Build(), NEAR_CONTENT_REQUEST);
             }
             else if(type.Equals("couponList"))
             {
@@ -67,14 +69,14 @@ namespace XamarinUI.Droid
             }
             else if (type.Equals("feedback"))
             {
-                Feedback feedback = (IT.Near.Sdk.Reactions.Feedbackplugin.Model.Feedback)intent.GetParcelableExtra("feedback");
+                Feedback feedback = (Feedback)intent.GetParcelableExtra("feedback");
                 StartActivityForResult(NearITUIBindings.GetInstance(this)
                                                        .CreateFeedbackIntentBuilder(feedback)
                                                        .Build(), NEAR_CONTENT_REQUEST);
             }
             else if (type.Equals("content"))
             {
-                Content content = (IT.Near.Sdk.Reactions.Contentplugin.Model.Content)intent.GetParcelableExtra("content");
+                Content content = (Content)intent.GetParcelableExtra("content");
                 StartActivityForResult(NearITUIBindings.GetInstance(this)
                                                        .CreateContentDetailIntentBuilder(content)
                                                        .Build(), NEAR_CONTENT_REQUEST);
@@ -93,25 +95,25 @@ namespace XamarinUI.Droid
             OurUIPermissions(mode);
         }
 
-        public void CouponTypeFromPCL(string mode, XCCouponNotification coupon)
+        public void CouponTypeFromPCL(XCCouponNotification coupon)
         {
             Coupon NCoupon = new Coupon();
             NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(mode, NCoupon);
+            OurUICoupon(NCoupon);
         }
 
-        public void ContentTypeFromPCL(string mode, XCContentNotification content)
+        public void ContentTypeFromPCL(XCContentNotification content)
         {
             Content NContent = new Content();
             NContent = Adapter.AdapterContent.GetNativeType(content);
-            OurUIContent(mode, NContent);
+            OurUIContent(NContent);
         }
 
-        public void FeedbackTypeFromPCL(string mode, XCFeedbackNotification feedback)
+        public void FeedbackTypeFromPCL(XCFeedbackNotification feedback)
         {
             Feedback NFeedback = new Feedback();
             NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
-            OurUIFeedback(mode, NFeedback);
+            OurUIFeedback(NFeedback);
         }
 
         public void CouponListTypeFromPCL()
@@ -139,35 +141,35 @@ namespace XamarinUI.Droid
         {
             Coupon NCoupon = new Coupon();
             NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(Global.VALID_MODE, NCoupon);
+            OurUICoupon(NCoupon);
         }
 
         public static void UIInactiveCoupon(XCCouponNotification coupon)
         {
             Coupon NCoupon = new Coupon();
             NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(Global.INACTIVE_MODE, NCoupon);
+            OurUICoupon(NCoupon);
         }
 
         public static void UIExpiredCoupon(XCCouponNotification coupon)
         {
             Coupon NCoupon = new Coupon();
             NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(Global.EXPIRED_MODE, NCoupon);
+            OurUICoupon(NCoupon);
         }
 
         public static void UIContent(XCContentNotification content)
         {
             Content NContent = new Content();
             NContent = Adapter.AdapterContent.GetNativeType(content);
-            OurUIContent(Global.DEFAULT_CONTENT_MODE, NContent);
+            OurUIContent(NContent);
         }
 
         public static void UIFeedback(XCFeedbackNotification feedback)
         {
             Feedback NFeedback = new Feedback();
             NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
-            OurUIFeedback(Global.DEFAULT_FEEDBACK_MODE, NFeedback);
+            OurUIFeedback(NFeedback);
         }
 
         public static void UICouponList()
@@ -195,10 +197,9 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        private static void OurUICoupon(string mode, Coupon coupon)
+        private static void OurUICoupon(Coupon coupon)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
-            intent.PutExtra("mode", mode);
             intent.PutExtra("coupon", coupon);
             intent.SetAction("coupon");
 
@@ -213,22 +214,18 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        private static void OurUIContent(string mode, Content content)
+        private static void OurUIContent(Content content)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
-            intent.PutExtra("mode", mode);
             intent.PutExtra("content", content);
             intent.SetAction("content");
 
             (Forms.Context).StartActivity(intent);
         }
 
-        private static void OurUIFeedback(string mode, Feedback feedback)
+        private static void OurUIFeedback(Feedback feedback)
         {
-            System.Diagnostics.Debug.WriteLine("UIFeedback");
-
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
-            intent.PutExtra("mode", mode);
             intent.PutExtra("feedback", feedback);
             intent.SetAction("feedback");
 
