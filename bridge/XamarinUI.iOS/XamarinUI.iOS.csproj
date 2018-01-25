@@ -50,9 +50,6 @@
     <Reference Include="NearBridge">
       <HintPath>..\packages\Xamarin.NearIT.iOS.2.5.5\lib\NearITSDK\NearBridge.dll</HintPath>
     </Reference>
-    <Reference Include="NeariOSBind">
-      <HintPath>..\packages\Xamarin.NearIT.iOS.2.5.5\lib\NearITSDK\NeariOSBind.dll</HintPath>
-    </Reference>
     <Reference Include="XamarinBridge.PCL">
       <HintPath>..\packages\Xamarin.NearIT.iOS.2.5.5\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
     </Reference>
@@ -70,6 +67,9 @@
     </Reference>
     <Reference Include="iOS-UI-Binding">
       <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
+    </Reference>
+    <Reference Include="NeariOSBind">
+      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-Bind\NeariOSBind\bin\Debug\NeariOSBind.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -18,14 +18,14 @@ namespace XamarinUI.iOS.Adapter
 
             if(XContent.ImageLink != null)
             {
-                NContent.Image.Image = new NSDictionary<NSString, NSObject>();
-                NContent.Image.Image = From(XContent.ImageLink);
+                NContent.Images = new NITImage[1];
+                NContent.Images = From(XContent.ImageLink);
             }
 
             if(XContent.Cta != null)
             {
-                NContent.Link.Label = XContent.Cta.Label;
-                NContent.Link.Url = (Foundation.NSUrl)NSUrl.FromObject(XContent.Cta.Url);
+                NContent.InternalLink = new NSDictionary<NSString, NSObject>();
+                NContent.InternalLink = FromContentLink(XContent.Cta);
             }
 
             NContent.ID = XContent.Id;
@@ -33,8 +33,10 @@ namespace XamarinUI.iOS.Adapter
             return NContent;
         }
 
-        private static NSDictionary<NSString, NSObject> From(XCImageSet IconSet)
+        private static NITImage[] From(XCImageSet IconSet)
         {
+            var image = new NITImage[1];
+
             var Keys = new NSString[2];
             var Obj = new NSObject[2];
 
@@ -44,8 +46,26 @@ namespace XamarinUI.iOS.Adapter
             Obj[0] = NSString.FromObject(IconSet.SmallSize);
             Obj[1] = NSString.FromObject(IconSet.FullSize);
 
-            NSDictionary<NSString, NSObject> image = new NSDictionary<NSString, NSObject>(Keys, Obj);
+            image[0] = new NITImage();
+            image[0].Image = new NSDictionary<NSString, NSObject>(Keys, Obj);
+
             return image;
+        }
+
+        private static NSDictionary<NSString, NSObject> FromContentLink(XCContentLink ContentLink)
+        {
+            var Keys = new NSString[2];
+            var Obj = new NSObject[2];
+
+            Keys[0] = (Foundation.NSString)"url";
+            Keys[1] = (Foundation.NSString)"label";
+
+            Obj[0] = NSString.FromObject(ContentLink.Url);
+            Obj[1] = NSString.FromObject(ContentLink.Label);
+
+            NSDictionary<NSString, NSObject> images = new NSDictionary<NSString, NSObject>(Keys, Obj);
+
+            return images;
         }
     }
 }
