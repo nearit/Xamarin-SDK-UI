@@ -106,8 +106,10 @@ namespace SampleUIBindings
             else if (textCell.Text == "Inactive Coupon")
             {
                 XCCouponNotification XCoupon = new XCCouponNotification();
+                XCoupon.NotificationMessage = "Notification Message";
                 XCoupon.Description = "Description example for valid coupon";
                 XCoupon.Value = "100€";
+                XCoupon.ExpiresAt = "3017-04-01T00:00:00.001Z";
                 XCoupon.RedeemableFrom = "3017-04-01T00:00:00.000Z";
                 XCoupon.Serial = "0123456789";
 
@@ -116,6 +118,7 @@ namespace SampleUIBindings
             else if (textCell.Text == "Expired Coupon")
             {
                 XCCouponNotification XCoupon = new XCCouponNotification();
+                XCoupon.NotificationMessage = "Notification Message";
                 XCoupon.Description = "Description example for valid coupon";
                 XCoupon.Value = "100€";
                 XCoupon.ExpiresAt = "2017-04-01T00:00:00.000Z";
