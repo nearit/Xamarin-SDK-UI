@@ -171,6 +171,9 @@
     <Compile Include="Adapter\AdapterCoupon.cs" />
     <Compile Include="Adapter\AdapterContent.cs" />
     <Compile Include="Adapter\AdapterFeedback.cs" />
+    <Compile Include="Switcher\CouponList.cs" />
+    <Compile Include="Switcher\Coupon.cs" />
+    <Compile Include="Switcher\Feedback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

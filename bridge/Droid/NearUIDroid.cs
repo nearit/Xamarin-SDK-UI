@@ -25,6 +25,7 @@ namespace XamarinUI.Droid
 
         private static int NEAR_PERMISSION_REQUEST = 1000;
         private static int NEAR_CONTENT_REQUEST = 2000;
+        private static bool TAP_OUTSIDE_TO_CLOSE = false;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -47,37 +48,47 @@ namespace XamarinUI.Droid
             var type = intent.Action;
             var mode = intent.GetStringExtra("mode");
 
-            System.Diagnostics.Debug.WriteLine("type: " + type);
-            System.Diagnostics.Debug.WriteLine("mode: " + mode);
-
             if(type.Equals("permissions"))
             {
-                StartActivityForResult(Switcher.PermissionsClass.SwitchMode(mode, this), NEAR_PERMISSION_REQUEST);
+                var layoutUI = intent.GetBooleanExtra("layoutUI", true);
+                StartActivityForResult(Switcher.PermissionsClass.SwitchMode(this, mode, layoutUI, TAP_OUTSIDE_TO_CLOSE), NEAR_PERMISSION_REQUEST);
             }
+
+
             else if(type.Equals("coupon"))
             {
+                var placeHolder = intent.GetIntExtra("placeHolder", 0);
                 Coupon coupon = (Coupon)intent.GetParcelableExtra("coupon");
-                StartActivityForResult(NearITUIBindings.GetInstance(this)
-                                       .CreateCouponDetailIntentBuilder(coupon)
-                                       .Build(), NEAR_CONTENT_REQUEST);
+                StartActivityForResult(Switcher.CouponClass.SwitchMode(this, coupon, placeHolder, TAP_OUTSIDE_TO_CLOSE), NEAR_CONTENT_REQUEST);
             }
+
+
             else if(type.Equals("couponList"))
             {
-                StartActivityForResult(NearITUIBindings.GetInstance(this)
-                                                       .CreateCouponListIntentBuilder()
-                                                       .Build(), NEAR_CONTENT_REQUEST);
+                var includeRedeemed = intent.GetBooleanExtra("includeRedeemed", false);
+                var filterOption = intent.GetIntExtra("filterOption", 0);
+
+                StartActivityForResult(Switcher.CouponListClass.SwitchMode(this, includeRedeemed, filterOption), NEAR_CONTENT_REQUEST);
             }
+
+
             else if (type.Equals("feedback"))
             {
+                var comment = intent.GetBooleanExtra("comment", true);
                 Feedback feedback = (Feedback)intent.GetParcelableExtra("feedback");
-                StartActivityForResult(NearITUIBindings.GetInstance(this)
-                                                       .CreateFeedbackIntentBuilder(feedback)
-                                                       .Build(), NEAR_CONTENT_REQUEST);
+                StartActivityForResult(Switcher.FeedbackClass.SwitchMode(this, feedback, comment, TAP_OUTSIDE_TO_CLOSE), NEAR_CONTENT_REQUEST);
             }
+
+
             else if (type.Equals("content"))
             {
                 Content content = (Content)intent.GetParcelableExtra("content");
-                StartActivityForResult(NearITUIBindings.GetInstance(this)
+                if(TAP_OUTSIDE_TO_CLOSE == true) StartActivityForResult(NearITUIBindings.GetInstance(this)
+                                                       .CreateContentDetailIntentBuilder(content)
+                                                       .EnableTapOutsideToClose()
+                                                       .Build(), NEAR_CONTENT_REQUEST);
+                
+                else StartActivityForResult(NearITUIBindings.GetInstance(this)
                                                        .CreateContentDetailIntentBuilder(content)
                                                        .Build(), NEAR_CONTENT_REQUEST);
             }
@@ -92,7 +103,7 @@ namespace XamarinUI.Droid
         public void PermissionTypeFromPCL(string mode, Action<int> result)
         {
             resultHandler = result;
-            OurUIPermissions(mode);
+            OurUIPermissions(mode, true);
         }
 
         public void CouponTypeFromPCL(XCCouponNotification coupon)
@@ -109,72 +120,108 @@ namespace XamarinUI.Droid
             OurUIContent(NContent);
         }
 
-        public void FeedbackTypeFromPCL(XCFeedbackNotification feedback)
+        public void FeedbackTypeFromPCL(XCFeedbackNotification feedback, bool comment)
         {
             Feedback NFeedback = new Feedback();
             NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
-            OurUIFeedback(NFeedback);
+            OurUIFeedback(NFeedback, comment);
         }
 
-        public void CouponListTypeFromPCL()
+        public void CouponListTypeFromPCL(bool includeRedeemed, int option)
         {
-            OurUICouponList();
+            OurUICouponList(includeRedeemed, option);
         }
 
 
 
         // Methods from the native fragment
 
-        public static void UINoBluetoothPermission(Action<int> result)      //only location
+
+        //Enable tapoutsidetoclose
+        public static void UIEnableTapOutsideToClose()
+        {
+            TAP_OUTSIDE_TO_CLOSE = true;
+        }
+
+
+        //Permissions
+        public static void UIOnlyLocation(Action<int> result)      //only location
         {
             resultHandler = result;
-            OurUIPermissions(Global.LOCATION_MODE);
+            OurUIPermissions(Global.LOCATION_MODE, true);
+        }
+
+        public static void UIOnlyLocation(Action<int> result, bool layoutUI)      //only location
+        {
+            resultHandler = result;
+            OurUIPermissions(Global.LOCATION_MODE, layoutUI);
         }
 
         public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH
         {
             resultHandler = result;
-            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE);
+            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE, true);
         }
 
-        public static void UIValidCoupon(XCCouponNotification coupon)
+        public static void UIPermission(Action<int> result, bool layoutUI)       //mode = LOCATION + BLUETOOTH
         {
-            Coupon NCoupon = new Coupon();
-            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(NCoupon);
+            resultHandler = result;
+            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE, layoutUI);
         }
 
-        public static void UIInactiveCoupon(XCCouponNotification coupon)
+
+        //Coupon
+
+        public static void UICoupon(Coupon coupon)
         {
-            Coupon NCoupon = new Coupon();
-            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(NCoupon);
+            OurUICoupon(coupon);
         }
 
-        public static void UIExpiredCoupon(XCCouponNotification coupon)
+        public static void UICoupon(Coupon coupon, int iconPlaceHolder)
         {
-            Coupon NCoupon = new Coupon();
-            NCoupon = Adapter.AdapterCoupon.GetNativeType(coupon);
-            OurUICoupon(NCoupon);
+            OurUICoupon(coupon, iconPlaceHolder);
         }
 
-        public static void UIContent(XCContentNotification content)
+
+        //Content
+
+        public static void UIContent(Content content)
         {
-            Content NContent = new Content();
-            NContent = Adapter.AdapterContent.GetNativeType(content);
-            OurUIContent(NContent);
+            OurUIContent(content);
         }
 
-        public static void UIFeedback(XCFeedbackNotification feedback)
+
+        //Feedback
+
+        public static void UIFeedback(Feedback feedback)
         {
-            Feedback NFeedback = new Feedback();
-            NFeedback = Adapter.AdapterFeedback.GetNativeType(feedback);
-            OurUIFeedback(NFeedback);
+            OurUIFeedback(feedback, true);
         }
+
+        public static void UIFeedback(Feedback feedback, bool comment)
+        {
+            OurUIFeedback(feedback, comment);
+        }
+
+
+        //CouponList
 
         public static void UICouponList()
         {
-            OurUICouponList();
+            int optionFilter = (int)AndroidCouponListFilterOption.All;
+            OurUICouponList(false, optionFilter);
+        }
+
+        public static void UICouponList(AndroidCouponListFilterOption option)
+        {
+            int optionFilter = (int)option;
+            OurUICouponList(false, optionFilter);
+        }
+
+        public static void UICouponList(bool includeRedeemed, AndroidCouponListFilterOption option)
+        {
+            int optionFilter = (int)option;
+            OurUICouponList(includeRedeemed, optionFilter);
         }
 
         public interface IPermissionResultHandler
@@ -186,12 +233,15 @@ namespace XamarinUI.Droid
 
 
 
+
+
         // Our private methods
 
-        private static void OurUIPermissions(string mode)
+        private static void OurUIPermissions(string mode, bool layoutUI)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("mode", mode);
+            intent.PutExtra("layoutUI", layoutUI);
             intent.SetAction("permissions");
 
             (Forms.Context).StartActivity(intent);
@@ -201,14 +251,29 @@ namespace XamarinUI.Droid
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("coupon", coupon);
+            intent.PutExtra("placeHolder", 0);
             intent.SetAction("coupon");
 
             (Forms.Context).StartActivity(intent);
         }
 
-        private static void OurUICouponList()
+        private static void OurUICoupon(Coupon coupon, int placeHolder)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
+            intent.PutExtra("coupon", coupon);
+            intent.PutExtra("placeHolder", placeHolder);
+            intent.SetAction("coupon");
+
+            (Forms.Context).StartActivity(intent);
+        }
+
+        private static void OurUICouponList(bool includeRedeemed, int option)
+        {
+            int filterOption = (int)option;
+
+            Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
+            intent.PutExtra("includeRedeemed", includeRedeemed);
+            intent.PutExtra("filterOption", filterOption);
             intent.SetAction("couponList");
 
             (Forms.Context).StartActivity(intent);
@@ -223,10 +288,13 @@ namespace XamarinUI.Droid
             (Forms.Context).StartActivity(intent);
         }
 
-        private static void OurUIFeedback(Feedback feedback)
+        private static void OurUIFeedback(Feedback feedback, bool comment)
         {
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("feedback", feedback);
+
+            if (comment == false) intent.PutExtra("comment", false);
+
             intent.SetAction("feedback");
 
             (Forms.Context).StartActivity(intent);

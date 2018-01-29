@@ -8,7 +8,7 @@ namespace XamarinUI.Interfaces
         void PermissionTypeFromPCL(string mode, Action<int> result);
         void CouponTypeFromPCL(XCCouponNotification coupon);
         void ContentTypeFromPCL(XCContentNotification content);
-        void FeedbackTypeFromPCL(XCFeedbackNotification feedback);
-        void CouponListTypeFromPCL();
+        void FeedbackTypeFromPCL(XCFeedbackNotification feedback, bool comment);
+        void CouponListTypeFromPCL(bool includeRedeemed, int option);
     }
 }

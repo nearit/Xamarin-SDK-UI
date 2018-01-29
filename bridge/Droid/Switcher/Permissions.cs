@@ -8,22 +8,89 @@ namespace XamarinUI.Droid.Switcher
 {
     public class PermissionsClass
     {
-        public static Intent SwitchMode(string mode, Context context)
+        public static Intent SwitchMode(Context context, string mode, bool layoutUI, bool tapOutside)
         {
-            mode = mode.ToLower();
-
-            if(mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
+            if(tapOutside == true)
             {
-                return NearITUIBindings.GetInstance(context)
-                                .CreatePermissionRequestIntentBuilder()
-                                .Build();
+                if (layoutUI == true)
+                {
+                    if (mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .EnableTapOutsideToClose()
+                                        .Build();
+                    }
+                    else        //only location
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .EnableTapOutsideToClose()
+                                        .NoBeacon()
+                                        .Build();
+                    }
+                }
+                else    //without UI
+                {
+                    if (mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .InvisibleLayoutMode()
+                                        .EnableTapOutsideToClose()
+                                        .Build();
+                    }
+                    else        //only location
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .InvisibleLayoutMode()
+                                        .EnableTapOutsideToClose()
+                                        .NoBeacon()
+                                        .Build();
+                    }
+                }
             }
-            else        //only location
+            else    //without TAP_OUTSIDE_TO_CLOSE
             {
-                return NearITUIBindings.GetInstance(context)
-                                .CreatePermissionRequestIntentBuilder()
-                                .NoBeacon()
-                                .Build();
+                System.Diagnostics.Debug.WriteLine("TextHere");
+                if (layoutUI == true)
+                {
+                    System.Diagnostics.Debug.WriteLine("non so");
+                    System.Diagnostics.Debug.WriteLine(layoutUI);
+                    if (mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .Build();
+                    }
+                    else        //only location
+                    {
+                        System.Diagnostics.Debug.WriteLine("without layout");
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .NoBeacon()
+                                        .Build();
+                    }
+                }
+                else    //without UI
+                {
+                    if (mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .InvisibleLayoutMode()
+                                        .Build();
+                    }
+                    else        //only location
+                    {
+                        return NearITUIBindings.GetInstance(context)
+                                        .CreatePermissionRequestIntentBuilder()
+                                        .InvisibleLayoutMode()
+                                        .NoBeacon()
+                                        .Build();
+                    }
+                }
             }
         }
     }

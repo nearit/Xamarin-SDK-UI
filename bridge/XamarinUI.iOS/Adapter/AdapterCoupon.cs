@@ -43,7 +43,6 @@ namespace XamarinUI.iOS.Adapter
             claims[0] = Claim;
 
             NCoupon.Claims = claims;
-            System.Diagnostics.Debug.WriteLine(NCoupon.Claims[0].SerialNumber);
 
             return NCoupon;
         }

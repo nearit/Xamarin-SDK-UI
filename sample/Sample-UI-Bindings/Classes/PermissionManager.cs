@@ -8,7 +8,7 @@ namespace SampleUIBindings.Classes
     {
         public static void SetPermission(int mode)
         {
-            DependencyService.Get<IPermissions>().Permissions(mode);
+            //DependencyService.Get<IPermissions>().Permissions(mode);
         }
     }
 }

@@ -4,6 +4,7 @@ using SampleUIBindings.Classes;
 using XamarinUI;
 using Xamarin.Forms;
 using XamarinBridge.PCL.Types;
+using SampleUIBindings.Interfaces;
 
 namespace SampleUIBindings
 {
@@ -54,9 +55,12 @@ namespace SampleUIBindings
         {
             var textCell = (TextCell)sender;
 
+            //Switcher.SwitchMode(textCell);
+
             if(textCell.Text == "Default Permissions")
             {
-                NearUIPCL.UIPermission((result) => {
+                DependencyService.Get<IPermissions>().DefaultPermissions();
+                /*//NearUIPCL.UIPermission((result) => {
                     if (result == 0)
                     {
                         DisplayAlert("Permissions", "granted!", "ok");
@@ -65,11 +69,12 @@ namespace SampleUIBindings
                     {
                         DisplayAlert("Permissions", "denied", "ok");
                     }
-                });
+                });*/
             }
             else if(textCell.Text == "Location Permissions")
             {
-                NearUIPCL.UINoBluetoothPermission((result) =>
+                DependencyService.Get<IPermissions>().LocationPermissions();
+                /*//NearUIPCL.UIOnlyLocation((result) =>
                 {
                     if (result == 0)
                     {
@@ -79,7 +84,7 @@ namespace SampleUIBindings
                     {
                         DisplayAlert("Permissions", "denied", "ok");
                     }
-                });
+                });*/
             }
             else if(textCell.Text == "Default Feedback")
             {
@@ -88,7 +93,8 @@ namespace SampleUIBindings
                 XFeedback.Question = "Default Feedback Question";
                 XFeedback.RecipeId = "cia0";
 
-                NearUIPCL.UIFeedback(XFeedback);
+                DependencyService.Get<IPermissions>().DefaultFeedback(XFeedback);
+                //NearUIPCL.UIFeedback(XFeedback);
             }
             else if (textCell.Text == "Valid Coupon")
             {
@@ -101,7 +107,8 @@ namespace SampleUIBindings
                 XCoupon.ExpiresAt = "3017-04-01T00:00:00.000Z";
                 XCoupon.Serial = "0123456789";
 
-                NearUIPCL.UIValidCoupon(XCoupon);
+                DependencyService.Get<IPermissions>().Coupon(XCoupon);
+                //NearUIPCL.UICoupon(XCoupon);
             }
             else if (textCell.Text == "Inactive Coupon")
             {
@@ -113,7 +120,8 @@ namespace SampleUIBindings
                 XCoupon.RedeemableFrom = "3017-04-01T00:00:00.000Z";
                 XCoupon.Serial = "0123456789";
 
-                NearUIPCL.UIInactiveCoupon(XCoupon);
+                DependencyService.Get<IPermissions>().Coupon(XCoupon);
+                //NearUIPCL.UICoupon(XCoupon);
             }
             else if (textCell.Text == "Expired Coupon")
             {
@@ -125,11 +133,13 @@ namespace SampleUIBindings
                 XCoupon.RedeemableFrom = "2017-03-31T00:00:00.000";
                 XCoupon.Serial = "0123456789";
 
-                NearUIPCL.UIExpiredCoupon(XCoupon);
+                DependencyService.Get<IPermissions>().Coupon(XCoupon);
+                //NearUIPCL.UICoupon(XCoupon);
             }
             else if (textCell.Text == "Coupon List")
             {
-                NearUIPCL.UICouponList();
+                DependencyService.Get<IPermissions>().CouponList();
+                //NearUIPCL.UICouponList();
             }
             else if (textCell.Text == "Default Content")
             {
@@ -148,7 +158,8 @@ namespace SampleUIBindings
                 XContent.Cta = XContentLink;
                 XContent.ImageLink = XImage;
 
-                NearUIPCL.UIContent(XContent);
+                DependencyService.Get<IPermissions>().DefaultContent(XContent);
+                //NearUIPCL.UIContent(XContent);
             }
             else if (textCell.Text == "Short Content")
             {
@@ -157,7 +168,8 @@ namespace SampleUIBindings
                 XContent.Title = "Drinks";
                 XContent.Content = "<ul><li> Coffee </li><li> Tea </li><li> Milk </li></ul>";
 
-                NearUIPCL.UIContent(XContent);
+                DependencyService.Get<IPermissions>().DefaultContent(XContent);
+                //NearUIPCL.UIContent(XContent);
             }
         }
     }

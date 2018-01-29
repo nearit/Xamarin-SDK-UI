@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using NearIT;
+using XamarinUI.iOS;
 using Foundation;
 using UIKit;
 

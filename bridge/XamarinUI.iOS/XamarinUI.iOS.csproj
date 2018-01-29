@@ -66,10 +66,7 @@
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="iOS-UI-Binding">
-      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="NeariOSBind">
-      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-Bind\NeariOSBind\bin\Debug\NeariOSBind.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -88,6 +85,7 @@
     <Compile Include="Adapter\AdapterContent.cs" />
     <Compile Include="Adapter\AdapterCoupon.cs" />
     <Compile Include="Adapter\AdapterFeedback.cs" />
+    <Compile Include="Switcher\Coupon.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinUI\XamarinUI.csproj">

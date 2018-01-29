@@ -58,11 +58,11 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.PCL.2.5.5\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
-    </Reference>
     <Reference Include="XamarinUI">
       <HintPath>..\..\bridge\XamarinUI\bin\Debug\XamarinUI.dll</HintPath>
+    </Reference>
+    <Reference Include="XamarinBridge.PCL">
+      <HintPath>..\..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
