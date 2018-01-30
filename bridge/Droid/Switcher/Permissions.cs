@@ -53,11 +53,8 @@ namespace XamarinUI.Droid.Switcher
             }
             else    //without TAP_OUTSIDE_TO_CLOSE
             {
-                System.Diagnostics.Debug.WriteLine("TextHere");
                 if (layoutUI == true)
                 {
-                    System.Diagnostics.Debug.WriteLine("non so");
-                    System.Diagnostics.Debug.WriteLine(layoutUI);
                     if (mode.Equals(Global.DEFAULT_PERMISSIONS_MODE))
                     {
                         return NearITUIBindings.GetInstance(context)
@@ -66,7 +63,6 @@ namespace XamarinUI.Droid.Switcher
                     }
                     else        //only location
                     {
-                        System.Diagnostics.Debug.WriteLine("without layout");
                         return NearITUIBindings.GetInstance(context)
                                         .CreatePermissionRequestIntentBuilder()
                                         .NoBeacon()
