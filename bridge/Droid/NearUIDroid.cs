@@ -18,6 +18,15 @@ using XamarinBridge.PCL.Types;
 [assembly: Dependency(typeof(XamarinUI.Droid.NearUIDroid))]
 namespace XamarinUI.Droid
 {
+    public enum AndroidCouponListFilterOption
+    {
+        All = 0,
+        Valid = 1,
+        Expired = 2,
+        Disabled = 3,
+        Reedmed = 4
+    }
+
     [Activity(Theme = "@android:style/Theme.Translucent")]
     public class NearUIDroid : Activity, IManager
     {
@@ -223,6 +232,9 @@ namespace XamarinUI.Droid
             int optionFilter = (int)option;
             OurUICouponList(includeRedeemed, optionFilter);
         }
+
+
+        //Permission Handler
 
         public interface IPermissionResultHandler
         {

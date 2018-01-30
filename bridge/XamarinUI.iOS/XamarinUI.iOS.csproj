@@ -47,12 +47,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="NearBridge">
-      <HintPath>..\packages\Xamarin.NearIT.iOS.2.5.5\lib\NearITSDK\NearBridge.dll</HintPath>
-    </Reference>
-    <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.iOS.2.5.5\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
-    </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -65,8 +59,11 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="iOS-UI-Binding">
-      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
+    <Reference Include="NearIT.iOS">
+      <HintPath>..\..\..\Xamarin-Binding\NearIT.iOS\NearIT.iOS\bin\Debug\NearIT.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="XamarinBridge.PCL">
+      <HintPath>..\..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -85,7 +82,7 @@
     <Compile Include="Adapter\AdapterContent.cs" />
     <Compile Include="Adapter\AdapterCoupon.cs" />
     <Compile Include="Adapter\AdapterFeedback.cs" />
-    <Compile Include="Switcher\Coupon.cs" />
+    <Compile Include="Switcher\CouponList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\XamarinUI\XamarinUI.csproj">

@@ -137,23 +137,14 @@
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\MonoAndroid10\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
-    <Reference Include="AltBeacon.Droid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\AltBeacon.Droid.dll</HintPath>
+    <Reference Include="NearIT.Android.UI">
+      <HintPath>..\..\..\Xamarin-Binding\NearIT.Android.UI\NearIT.Android.UI\bin\Debug\NearIT.Android.UI.dll</HintPath>
     </Reference>
-    <Reference Include="BindDroid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\BindDroid.dll</HintPath>
-    </Reference>
-    <Reference Include="GoogleServices">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\GoogleServices.dll</HintPath>
-    </Reference>
-    <Reference Include="XamarinBridge.Droid">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\XamarinBridge.Droid.dll</HintPath>
+    <Reference Include="NearIT.Android">
+      <HintPath>..\..\..\Xamarin-Binding\NearIT.Android\NearIT.Android\bin\Debug\NearIT.Android.dll</HintPath>
     </Reference>
     <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.Android.2.5.6\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
-    </Reference>
-    <Reference Include="Android-UI-Binding">
-      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\Android-UI-Binding\Android-UI-Binding\bin\Debug\Android-UI-Binding.dll</HintPath>
+      <HintPath>..\..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

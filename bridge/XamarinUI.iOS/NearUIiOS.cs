@@ -15,13 +15,13 @@ namespace XamarinUI.iOS
         Always = 1
     }
 
-    public enum CouponListFilterOption
+    public enum iOSCouponListFilterOption
     {
         All = 0,
         Valid = 1,
         Expired = 2,
-        ValidAndExpired = 3,
-        Disabled = 4,
+        Disabled = 3,
+        ValidAndExpired = 4,
         ValidAndDisabled = 5,
         ExpiredAndDisabled = 6
     }
@@ -156,12 +156,19 @@ namespace XamarinUI.iOS
 
         public static void UICouponList()
         {
-            CouponListFilterOption option = CouponListFilterOption.All;
+            iOSCouponListFilterOption option = iOSCouponListFilterOption.All;
             int optionFilter = (int)option;
             OurUICouponList(false, optionFilter);
         }
 
-        public static void UICouponList(CouponListFilterOption option)
+        public static void UICouponList(bool includeRedeemed)
+        {
+            iOSCouponListFilterOption option = iOSCouponListFilterOption.All;
+            int optionFilter = (int)option;
+            OurUICouponList(includeRedeemed, optionFilter);
+        }
+
+        public static void UICouponList(iOSCouponListFilterOption option)
         {
             int optionFilter = (int)option;
             OurUICouponList(false, optionFilter);
@@ -174,7 +181,7 @@ namespace XamarinUI.iOS
             OurUICouponList(false, optionFilter, navigationController);
         }
 
-        public static void UICouponList(CouponListFilterOption option, UINavigationController navigationController)
+        public static void UICouponList(iOSCouponListFilterOption option, UINavigationController navigationController)
         {
             int optionFilter = (int)option;
             OurUICouponList(false, optionFilter, navigationController);
@@ -187,13 +194,13 @@ namespace XamarinUI.iOS
             OurUICouponList(includeRedeemed, optionFilter, navigationController);
         }
 
-        public static void UICouponList(bool includeRedeemed, CouponListFilterOption option)
+        public static void UICouponList(bool includeRedeemed, iOSCouponListFilterOption option)
         {
             int optionFilter = (int)option;
             OurUICouponList(includeRedeemed, optionFilter);
         }
 
-        public static void UICouponList(bool includeRedeemed, CouponListFilterOption option, UINavigationController navigationController)
+        public static void UICouponList(bool includeRedeemed, iOSCouponListFilterOption option, UINavigationController navigationController)
         {
             int optionFilter = (int)option;
             OurUICouponList(includeRedeemed, optionFilter, navigationController);
@@ -254,7 +261,7 @@ namespace XamarinUI.iOS
         private static void OurUICouponList(bool includeRedeemed, int option)
         {
             NITCouponListViewController CouponList = new NITCouponListViewController();
-            Switcher.CouponClass.SwitchMode(CouponList, includeRedeemed, option);
+            Switcher.CouponListClass.SwitchMode(CouponList, includeRedeemed, option);
         }
 
         private static void OurUICouponList(UINavigationController navigationController)
@@ -263,13 +270,13 @@ namespace XamarinUI.iOS
             int optionFilter = (int)option;
 
             NITCouponListViewController CouponList = new NITCouponListViewController();
-            Switcher.CouponClass.SwitchMode(CouponList, false, optionFilter, navigationController);
+            Switcher.CouponListClass.SwitchMode(CouponList, false, optionFilter, navigationController);
         }
 
         private static void OurUICouponList(bool includeRedeemed, int option, UINavigationController navigationController)
         {
             NITCouponListViewController CouponList = new NITCouponListViewController();
-            Switcher.CouponClass.SwitchMode(CouponList, includeRedeemed, option, navigationController);
+            Switcher.CouponListClass.SwitchMode(CouponList, includeRedeemed, option, navigationController);
         }
 
 

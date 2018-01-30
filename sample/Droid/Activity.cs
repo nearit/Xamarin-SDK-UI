@@ -38,7 +38,7 @@ namespace SampleUIBindings.Droid
 
         public void CouponList()
         {
-            
+            NearUIDroid.UICouponList();
         }
 
         public void DefaultContent(XCContentNotification content)
@@ -78,7 +78,7 @@ namespace SampleUIBindings.Droid
                 {
                     Console.WriteLine("denied");
                 }
-            });
+            }, false);
         }
 
     }

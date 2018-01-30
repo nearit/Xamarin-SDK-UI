@@ -43,7 +43,7 @@ namespace SampleUIBindings.iOS
 
         public void LocationPermissions()
         {
-            NearUIiOS.UIOnlyLocation((obj) => {
+            NearUIiOS.UIOnlyLocation(LocationType.Always,(obj) => {
                 
             });
         }

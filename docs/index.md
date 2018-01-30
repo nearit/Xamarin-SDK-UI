@@ -1,25 +1,27 @@
-# NearIT Xamarin SDK
+# NearIT-UI
+NearIT-UI is an open-source library that provides customizable UI bindings on top of the core **NearIT SDK**.<br>
+This library aims to minimize the effort of creating UI for NearIT contents and dialogs.
 
-NearIT allows to engage app users by sending **context-aware targeted content**.
+#### Features
+Permissions related:
 
-[![Visual Studio](https://img.shields.io/badge/Visual%20Studio-7.2-orange.svg)](https://www.visualstudio.com/)
-[![Android](https://img.shields.io/badge/Android-15%2B-blue.svg?style=flat)](https://developer.android.com/about/dashboards/index.html#Platform)
-[![iOS](https://img.shields.io/badge/iOS-9-blue.svg)](https://developer.apple.com/ios/)
+- Permissions request [iOS](ios/permissions.md) - [Android](android/permissions.md) - [PCL](bridge/permissions.md)
 
-[![Github](https://img.shields.io/badge/code-Github-green.svg)](https://github.com/nearit/Xamarin-SDK)
-[![Gitter](https://img.shields.io/gitter/room/nearit/Lobby.svg)](https://gitter.im/nearit/Lobby)
+Content related:
 
-## Recipes
+- Coupon detail [iOS](ios/coupon.md) - [Android](android/coupon.md) - [PCL](bridge/coupon.md)
+- Feedback request [iOS](ios/feedback.md) - [Android](android/feedback.md) - [PCL](bridge/feedback.md)
+- Content detail [iOS](ios/content.md) - [Android](android/content.md) - [PCL](bridge/content.md)
+- Coupon list [iOS](ios/couponList.md) -  [Android](android/couponList.md) - [PCL](bridge/couponList.md)
 
-NearIT allows to manage apps by defining "recipes". Those are simple rules made of 3 ingredients:
+## Configuration
+Add the NearIT-UI library dependency, click on “**Project>Add NuGet Packages**”, make sure you have "**Show pre-release packages**" option checked, find and add the following NuGet packages:
 
-* **WHO**: define the target users
-* **WHAT**: define what action NearIT should do
-* **TRIGGER**: define when the action should be triggered
+```
+- Xamarin.NearIT.PCL        (in your common fragment)
+- Xamarin.NearIT.iOS        (in your native iOS fragment)
+- Xamarin.NearIT.Android    (in your native Android fragment)
+```
+**NOTE** Make sure that your Android **target framework** is set to 8.0
 
-## How it works
-
-<a href="https://go.nearit.com/" target="_blank">**NearIT web interface**</a> allows you to configure all the features quickly.
-Once the settings are configured, **everyone** - even people without technical skills - can manage context-aware mobile content.
-
-**NearIT SDK** synchronizes with servers and behaves accordingly to the settings and the recipes. Any content will be delivered at the right time, you just need to handle its presentation.
+**Important**: NearIT-UI will only work with NearIT SDK version 2.5.3 or higher.

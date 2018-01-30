@@ -33,24 +33,12 @@ namespace XamarinUI.Droid.Switcher
                                                .CreateCouponListIntentBuilder()
                                                .OnlyInactiveCoupons()
                                                .Build();
-                    /*case 4:
+                    case 4:
                         return NearITUIBindings.GetInstance(context)
                                                .CreateCouponListIntentBuilder()
-                                               .OnlyValidCoupons()
-                                               .OnlyExpiredCoupons()
+                                               .OnlyRedeemedCoupons()
+                                               .IncludeRedeemed()
                                                .Build();
-                    case 5:
-                        return NearITUIBindings.GetInstance(context)
-                                               .CreateCouponListIntentBuilder()
-                                               .OnlyValidCoupons()
-                                               .OnlyInactiveCoupons()
-                                               .Build();
-                    case 6:
-                        return NearITUIBindings.GetInstance(context)
-                                               .CreateCouponListIntentBuilder()
-                                               .OnlyExpiredCoupons()
-                                               .OnlyInactiveCoupons()
-                                               .Build();*/
                     default:
                         return NearITUIBindings.GetInstance(context)
                                                .CreateCouponListIntentBuilder()
@@ -84,28 +72,12 @@ namespace XamarinUI.Droid.Switcher
                                                .OnlyInactiveCoupons()
                                                .IncludeRedeemed()
                                                .Build();
-                    /*case 4:
+                    case 4:
                         return NearITUIBindings.GetInstance(context)
                                                .CreateCouponListIntentBuilder()
-                                               .OnlyValidCoupons()
-                                               .OnlyExpiredCoupons()
+                                               .OnlyRedeemedCoupons()
                                                .IncludeRedeemed()
                                                .Build();
-                    case 5:
-                        return NearITUIBindings.GetInstance(context)
-                                               .CreateCouponListIntentBuilder()
-                                               .OnlyValidCoupons()
-                                               .OnlyInactiveCoupons()
-                                               .IncludeRedeemed()
-                                               .Build();
-                    case 6:
-                        return NearITUIBindings.GetInstance(context)
-                                               .CreateCouponListIntentBuilder()
-                                               .OnlyExpiredCoupons()
-                                               .OnlyInactiveCoupons()
-                                               .IncludeRedeemed()
-                                               .Build();*/
-
                     default:
                         return NearITUIBindings.GetInstance(context)
                                                .CreateCouponListIntentBuilder()

@@ -4,21 +4,23 @@ extra_css : ["css/nearitdocs.css"]
 extra_javascript : ["js/extra.js"]
 pages:
     - 'Getting started' : 'index.md'
-    - 'Setup' : 'setup.md'
     - 'Portable Class Library' :
-        - 'Notification Setup' : 'bridge/notification-setup.md'
-        - 'UI' : 'bridge/UI.md'
-        - 'In-app Content' : 'bridge/handle-content.md'
-        - 'User Profiling' : 'bridge/user-profiling.md'
+        - 'Permissions Request' : 'bridge/permissions.md'
+        - 'Coupon Detail' : 'bridge/coupon.md'
+        - 'Feedback Detail' : 'bridge/feedback.md'
+        - 'Content Detail' : 'bridge/content.md'
+        - 'Coupon List' : 'bridge/couponList.md'
     - 'iOS' :
-        - 'Notification Setup' : 'ios/setup-notifications.md'
-        - 'Location Based Notifications' : 'ios/location-based-notifications.md'
-        - 'Push Notifications' : 'ios/push-notifications.md'
-        - 'In-app Content' : 'ios/handle-content.md'
-        - 'User Profiling' : 'ios/user-profiling.md'
+        - 'Permissions Request' : 'ios/permissions.md'
+        - 'Coupon Detail' : 'ios/coupon.md'
+        - 'Feedback Detail' : 'ios/feedback.md'
+        - 'Content Detail' : 'ios/content.md'
+        - 'Coupon List' : 'ios/couponList.md'
     - 'Android' :
-        - 'Location Based Notifications' : 'android/location-based-notifications.md'
-        - 'Push Notifications' : 'android/push-notifications.md'
-        - 'In-app Content' : 'android/in-app-content.md'
-        - 'User Profiling' : 'android/user-profiling.md'
+        - 'Permissions Request' : 'android/permissions.md'
+        - 'Coupon Detail' : 'android/coupon.md'
+        - 'Feedback Detail' : 'android/feedback.md'
+        - 'Content Detail' : 'android/content.md'
+        - 'Coupon List' : 'android/couponList.md'
+        - 'Advanced' : 'android/advanced.md'
 

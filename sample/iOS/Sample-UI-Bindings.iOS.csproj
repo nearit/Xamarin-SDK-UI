@@ -139,14 +139,11 @@
     <Reference Include="XamarinUI.iOS">
       <HintPath>..\..\bridge\XamarinUI.iOS\bin\Debug\XamarinUI.iOS.dll</HintPath>
     </Reference>
-    <Reference Include="iOS-UI-Binding">
-      <HintPath>..\..\..\..\Desktop\Xamarin\NearIT-Bind\iOS-UI-Binding\iOS-UI-Binding\bin\Debug\iOS-UI-Binding.dll</HintPath>
-    </Reference>
-    <Reference Include="NearBridge">
-      <HintPath>..\..\..\Xamarin-SDK-Official\bridge\NearBridge\bin\Debug\NearBridge.dll</HintPath>
-    </Reference>
     <Reference Include="XamarinBridge.PCL">
       <HintPath>..\..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
+    </Reference>
+    <Reference Include="NearIT.iOS">
+      <HintPath>..\..\..\Xamarin-Binding\NearIT.iOS\NearIT.iOS\bin\Debug\NearIT.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

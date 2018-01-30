@@ -5,30 +5,19 @@ using XamarinBridge.PCL.Types;
 
 namespace XamarinUI
 {
-    public enum iOSCouponListFilterOption
+    
+    public enum CouponListFilterOption
     {
         All = 0,
         Valid = 1,
         Expired = 2,
-        ValidAndExpired = 3,
-        Disabled = 4,
-        ValidAndDisabled = 5,
-        ExpiredAndDisabled = 6
-    }
-
-    public enum AndroidCouponListFilterOption
-    {
-        All = 0,
-        Valid = 1,
-        Expired = 2,
-        Disabled = 4,
+        Disabled = 3,
     }
 
     public class NearUIPCL
     {
 
-        public iOSCouponListFilterOption iOSFilterOption { get; set; }
-        public AndroidCouponListFilterOption AndroidFilterOption { get; set; }
+        public CouponListFilterOption FilterOption { get; set; }
 
 
         //Permissions
@@ -80,28 +69,22 @@ namespace XamarinUI
             DependencyService.Get<IManager>().CouponListTypeFromPCL(false, 0);
         }
 
-        public static void UICouponList(iOSCouponListFilterOption option)
+        public static void UICouponList(bool includeRedeemed)
+        {
+            DependencyService.Get<IManager>().CouponListTypeFromPCL(includeRedeemed, 0);
+        }
+
+        public static void UICouponList(CouponListFilterOption option)
         {
             int optionFilter = (int)option;
             DependencyService.Get<IManager>().CouponListTypeFromPCL(false, optionFilter);
         }
 
-        public static void UICouponList(AndroidCouponListFilterOption option)
-        {
-            int optionFilter = (int)option;
-            DependencyService.Get<IManager>().CouponListTypeFromPCL(false, optionFilter);
-        }
-
-        public static void UICouponList(bool includeRedeemed, iOSCouponListFilterOption option)
+        public static void UICouponList(bool includeRedeemed, CouponListFilterOption option)
         {
             int optionFilter = (int)option;
             DependencyService.Get<IManager>().CouponListTypeFromPCL(includeRedeemed, optionFilter);
         }
 
-        public static void UICouponList(bool includeRedeemed, AndroidCouponListFilterOption option)
-        {
-            int optionFilter = (int)option;
-            DependencyService.Get<IManager>().CouponListTypeFromPCL(includeRedeemed, optionFilter);
-        }
     }
 }

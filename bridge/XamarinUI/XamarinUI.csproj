@@ -47,7 +47,7 @@
       <HintPath>..\packages\Xamarin.Forms.2.5.0.122203\lib\portable-win+net45+wp80+win81+wpa81\Xamarin.Forms.Xaml.dll</HintPath>
     </Reference>
     <Reference Include="XamarinBridge.PCL">
-      <HintPath>..\packages\Xamarin.NearIT.PCL.2.5.5\lib\NearITSDK\XamarinBridge.PCL.dll</HintPath>
+      <HintPath>..\..\..\Xamarin-SDK-Official\bridge\XamarinBridge.PCL\bin\Debug\XamarinBridge.PCL.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
