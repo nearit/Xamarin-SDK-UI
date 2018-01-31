@@ -33,3 +33,22 @@ NearUIiOS.UIOnlyLocation((int obj) =>
     }
 });
 ```
+
+## UI Customizations
+
+Please to main source code for the complete list of public variables.
+
+```
+var vc = new NITPermissionsViewController();
+vc.HeaderImage = <YOUR UIIMAGE>;
+vc.TextColor = UIColor.Black;
+vc.IsEnableTapToClose = true;
+vc.UnknownButton = <YOUR UIIMAGE>;
+vc.GrantedButton = <YOUR UIIMAGE>;
+vc.GrantedIcon = <YOUR UIIMAGE>;
+vc.LocationText = "Turn on location";
+vc.NotificationsText = "Turn on notications";
+vc.ExplainText = "We'll notify you of content that's interesting";
+vc.AutoCloseDialog = NITPermissionsAutoCloseDialog.ff | NITPermissionsAutoCloseDialog.n;
+vc.Show();
+```

@@ -8,7 +8,6 @@ namespace SampleUIBindings
         {
             InitializeComponent();
 
-            System.Diagnostics.Debug.WriteLine("App Page");
             MainPage = new NavigationPage(new Sample_UI_BindingsPage());
         }
 

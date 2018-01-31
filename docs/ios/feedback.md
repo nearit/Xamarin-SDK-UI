@@ -17,3 +17,23 @@ If you need to **simplify** the feedback request you are able to ask the user fo
 ```
 NearUIiOS.UIFeedback(<YOUR FEEDBACK>, false);
 ```
+
+## UI Customizations
+
+Please to main source code for the complete list of public variables.
+
+```
+var vc = new NITFeedbackViewController(<YOUR FEEDBACK>);
+vc.SendButton = <YOUR UIIMAGE>;
+vc.RateEmptyButton = <YOUR UIIMAGE>;
+vc.RateFullButton = <YOUR UIIMAGE>;
+vc.CommentDescriptionText = "Anything to say?";
+vc.CloseText = "Not interested";
+vc.SendText = "Rate";
+vc.TextColor = UIColor.Blue;
+vc.OkText = "Thank you for taking the time to provide us with your feedback.\n\nYour feedback is important to us and we will endeavour to respond to your feedback within 100 working days.\n\nIf your feedback is of an urgent nature, you can contact the Developer on +800HackerMenn";
+vc.TextFont = UIFont.BoldSystemFontOfSize(15);
+vc.ErrorFont = UIFont.BoldSystemFontOfSize(20);
+vc.DisappearTime = 2.0;
+vc.Show();
+```

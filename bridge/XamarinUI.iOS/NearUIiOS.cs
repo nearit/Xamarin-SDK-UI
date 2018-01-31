@@ -9,12 +9,6 @@ using XamarinUI.iOS.Adapter;
 [assembly: Dependency(typeof(XamarinUI.iOS.NearUIiOS))]
 namespace XamarinUI.iOS
 {
-    public enum LocationType
-    {
-        WhenInUse = 0,
-        Always = 1
-    }
-
     public enum iOSCouponListFilterOption
     {
         All = 0,
@@ -48,7 +42,7 @@ namespace XamarinUI.iOS
         public void PermissionTypeFromPCL(string mode, Action<int> result)
         {
             resultHandler = result;
-            OurUIPermissions(mode, LocationType.WhenInUse);
+            OurUIPermissions(mode);
         }
 
         public void CouponTypeFromPCL(XCCouponNotification coupon)
@@ -81,25 +75,13 @@ namespace XamarinUI.iOS
         public static void UIPermission(Action<int> result)       //mode = LOCATION + BLUETOOTH
         {
             resultHandler = result;
-            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE, LocationType.Always);
-        }
-
-        public static void UIPermission(LocationType locationType, Action<int> result)       //mode = LOCATION + BLUETOOTH
-        {
-            resultHandler = result;
-            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE, locationType);
+            OurUIPermissions(Global.DEFAULT_PERMISSIONS_MODE);
         }
 
         public static void UIOnlyLocation(Action<int> result)      //only location
         {
             resultHandler = result;
-            OurUIPermissions(Global.LOCATION_MODE, LocationType.Always);
-        }
-
-        public static void UIOnlyLocation(LocationType locationType, Action<int> result)      //only location
-        {
-            resultHandler = result;
-            OurUIPermissions(Global.LOCATION_MODE, locationType);
+            OurUIPermissions(Global.LOCATION_MODE);
         }
 
 
@@ -222,9 +204,9 @@ namespace XamarinUI.iOS
 
         //permissions
 
-        private static void OurUIPermissions(string mode, LocationType locationType)
+        private static void OurUIPermissions(string mode)
         {
-            Switcher.PermissionsClass.SwitchMode(mode, locationType);
+            Switcher.PermissionsClass.SwitchMode(mode);
         }
 
         //coupon

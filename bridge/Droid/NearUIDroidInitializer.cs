@@ -10,5 +10,10 @@ namespace XamarinUI.Droid
         public static void init(Context context) {
             AppContext = context;
         }
+
+        public static void Init()
+        {
+            var init = new NearUIDroid();
+        }
     }
 }

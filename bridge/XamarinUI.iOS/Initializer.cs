@@ -1,7 +1,7 @@
 ﻿using System;
 namespace XamarinUI.iOS
 {
-    public static class Initializer
+    public static class NearUIiOSInitializer
     {
         public static void Init()
         {

@@ -17,15 +17,12 @@ namespace SampleUIBindings
         {
             InitializeComponent();
 
-            System.Diagnostics.Debug.WriteLine("Bindings Page");
-
             Groups = new ObservableCollection<TypeL>();
             var permissionGroup = new TypeL() { LongName = "Permissions" };
             var feedbackGroup = new TypeL() { LongName = "Feedback" };
             var couponGroup = new TypeL() { LongName = "Coupon" };
             var contentGroup = new TypeL() { LongName = "Content" };
             var couponListGroup = new TypeL() { LongName = "Coupon List" };
-            //var permissionBarGroup = new TypeL() { LongName = "Permission Bar", ShortName = "PB" };
 
             permissionGroup.Add(new Typology() { Title = "Default Permissions", Description = "Request permissions for locations and notifications" });
             permissionGroup.Add(new Typology() { Title = "Location Permissions", Description = "Location Only" });
@@ -46,7 +43,6 @@ namespace SampleUIBindings
             Groups.Add(couponGroup);
             Groups.Add(contentGroup);
             Groups.Add(couponListGroup);
-            //Groups.Add(permissionBarGroup);
 
             lstView.ItemsSource = Groups;
         }
@@ -54,8 +50,6 @@ namespace SampleUIBindings
         void Tap_Handle(object sender, System.EventArgs e)
         {
             var textCell = (TextCell)sender;
-
-            //Switcher.SwitchMode(textCell);
 
             if(textCell.Text == "Default Permissions")
             {

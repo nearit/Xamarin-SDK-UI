@@ -15,6 +15,7 @@ namespace XamarinUI.Droid.Switcher
                 switch (filterOption)
                 {
                     case 0:
+                        System.Diagnostics.Debug.WriteLine("case 0");
                         return NearITUIBindings.GetInstance(context)
                                                .CreateCouponListIntentBuilder()
                                                .Build();

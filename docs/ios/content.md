@@ -16,3 +16,15 @@ You can display the content in your `UINavigationController`:
 ```
 NearUIiOS.UIContent(<YOUR CONTENT>, <YOUR NAVIGATIONCONTROLLER>);
 ```
+
+## UI Customizations
+
+Please to main source code for the complete list of public variables.
+
+```
+var vc = new NITContentViewController(<YOUR CONTENT>);
+vc.CallToActionButton = <YOUR UIIMAGE>;
+vc.ContentMainFont = UIFont.SystemFontOfSize(20);
+vc.ImagePlaceholder = <YOUR UIIMAGE>;
+vc.Show();
+```

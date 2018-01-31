@@ -74,6 +74,7 @@ namespace XamarinUI.Droid
 
             else if(type.Equals("couponList"))
             {
+                System.Diagnostics.Debug.WriteLine("else if");
                 var includeRedeemed = intent.GetBooleanExtra("includeRedeemed", false);
                 var filterOption = intent.GetIntExtra("filterOption", 0);
 
@@ -216,7 +217,7 @@ namespace XamarinUI.Droid
         //CouponList
 
         public static void UICouponList()
-        {
+        {System.Diagnostics.Debug.WriteLine("UICouponList");
             int optionFilter = (int)AndroidCouponListFilterOption.All;
             OurUICouponList(false, optionFilter);
         }
@@ -280,12 +281,10 @@ namespace XamarinUI.Droid
         }
 
         private static void OurUICouponList(bool includeRedeemed, int option)
-        {
-            int filterOption = (int)option;
-
+        {System.Diagnostics.Debug.WriteLine("OurUICouponList");
             Intent intent = new Intent(Forms.Context, typeof(NearUIDroid));
             intent.PutExtra("includeRedeemed", includeRedeemed);
-            intent.PutExtra("filterOption", filterOption);
+            intent.PutExtra("filterOption", option);
             intent.SetAction("couponList");
 
             (Forms.Context).StartActivity(intent);
